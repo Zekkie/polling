@@ -21,17 +21,14 @@ const data = {
 
 
 
-const listener = (res) => {
-	console.log("whoops")
-	messageBus.once("message", (d) => {
-		res.send(d)
-	})
-}
+//fake score generator
 
 
 setInterval(function() {
 	data.score += 1;
 	console.log("scored")
+
+	//notifies the pending requests on a score
 	observer.notify(data)
 }, 10000);
 
@@ -44,7 +41,7 @@ app.get("/", (req, res) => {
 })
 
 
-
+//adds requests to the observer
 app.get("/poll", (req, res) => {
 	observer.subscribe(res);
 
